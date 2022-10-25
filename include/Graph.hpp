@@ -1,6 +1,9 @@
 #pragma once
 #include <cassert>
 #include <cmath>
+#include <vector>
+
+using namespace std;
 
 /*
 La class pour représenter un graph par une matrice d'adjacente
@@ -9,10 +12,11 @@ La class pour représenter un graph par une matrice d'adjacente
 class Graph{
     private:
         int nb_noeud;
-        int** nb_arret;
+        vector<vector<int> > M_adj;
     public:
-        Graph(){}
-        Graph(int n):nb_noeud(n){}
-        ~Graph(){}
+        Graph(int);
+        ~Graph(){};
+        int size() {return nb_noeud;}
+        void print_graph();
 };
 

@@ -4,8 +4,10 @@ Sudoku::Sudoku(int N)
 {
     size = N;
     grid = new int*[size];
+    immutable = new int*[size];
     for(int i = 0; i < size; i++){
         grid[i] = new int[size];
+        immutable[i] = new int[size];
     }
     for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
@@ -18,8 +20,10 @@ Sudoku::~Sudoku()
 {
     for(int i = 0; i < size; i++){
         delete [] grid[i];
+        delete [] immutable[i];
     }
     delete [] grid;
+    delete [] immutable;
 }
 
 void Sudoku::print_grid()
@@ -32,7 +36,25 @@ void Sudoku::print_grid()
     }
 }
 
+int & Sudoku::operator() (int i, int j)
+{
+    assert(0 <= i && size > i && 0 <= j && size > j);
+    return grid[i][j];
+}
 
+bool Sudoku::checkImmutable(int i, int j)
+{
+    return immutable[i][j];
+}
+
+void Sudoku::setGrid(int g[9][9])
+{
+    for(int i = 0; i < 9; i++){
+        for(int j = 0; j < 9; j++){
+            (*this)(i, j) = g[i][j];
+        }
+    }
+}
 /*
 
 

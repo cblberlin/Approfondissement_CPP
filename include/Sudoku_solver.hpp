@@ -1,7 +1,10 @@
 #pragma once
+#include <iostream>
 #include "Sudoku.hpp"
 #include <cmath>
 #include <cassert>
+
+using namespace std;
 
 class Sudoku_solver{
     public:

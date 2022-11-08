@@ -26,6 +26,7 @@ bool Sudoku_solver::solve_backtracking(Sudoku S, int ligne, int col)
 
     // 
     if(S(ligne, col) != 0){
+        //cout << "test: " << ligne << " " << col << endl;
         if(col == n - 1){
             if(solve_backtracking(S, ligne + 1, 0)) return true;
         } else {
@@ -33,7 +34,7 @@ bool Sudoku_solver::solve_backtracking(Sudoku S, int ligne, int col)
         }
         return false;
     }
-
+    //cout << " test 2 " << endl;
     // essaie d'autres valeurs
     for(int val = 1; val <= 9; val++){
         if(est_valide(S, ligne, col, val)){

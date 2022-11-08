@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Sudoku.hpp"
 #include "Sudoku_solver.hpp"
+#include "Node.hpp"
+#include "Graph.hpp"
 
 using namespace std;
 
@@ -10,6 +12,8 @@ int main(){
     
 
     // test pour constructeur par tableau
+    
+    /*
     
     
     
@@ -24,9 +28,14 @@ int main(){
                       {0, 0, 5, 2, 0, 6, 3, 0, 0}};
 
     Sudoku s(9);
-
+    //cout << "sudoku is " << endl;
     s.setGrid(grid);
 
+    s.print_grid();
+    cout << endl << endl;
+    // test for assign
+    //s(0,1) = 1;
+    //cout << "sudoku is " << endl;
     s.print_grid();
 
     Sudoku_solver solver;
@@ -34,6 +43,8 @@ int main(){
     if(solver.solve_backtracking(s, 0, 0)){
         s.print_grid();
     }
+    */
+    
     
     return 0;
 }

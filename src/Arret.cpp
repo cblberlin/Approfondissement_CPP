@@ -1,6 +1,6 @@
 #include "Arret.hpp"
 
-Arret::Arret(Node debut, Node fin){
-    pair<Node, Node> arret;
+Arret::Arret(int debut, int fin){
+    pair<int, int> arret;
     arret = make_pair(debut, fin);
 }

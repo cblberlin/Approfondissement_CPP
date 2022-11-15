@@ -2,16 +2,15 @@
 
 #include <utility>
 #include <map>
-#include "Node.hpp"
 
 using namespace std;
 
 class Arret{
     private:
-        pair<Node, Node> arret;
+        pair<int, int> arret;
     public:
         // constructeur
-        Arret(pair<Node, Node>);
+        Arret(int, int);
 
         // destructeur
         

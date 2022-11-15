@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Sudoku.hpp"
 #include "Sudoku_solver.hpp"
-#include "Node.hpp"
 #include "Graph.hpp"
 
 using namespace std;

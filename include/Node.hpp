@@ -1,15 +1,12 @@
 #pragma once
-#include <string>
 
 using namespace std;
 
 class Node{
     private:
-        unsigned id;
-        string color;
-        Node * next;
+        int id; // l'indice du Node
+        int color;   // le couleur du Node
     public:
-        Node(unsigned, string);
-        void add_node(Node *head, unsigned id, string col);
-
+        // constructeur
+        Node(int _id, int _color) : id(_id), color(_color) {}     
 };

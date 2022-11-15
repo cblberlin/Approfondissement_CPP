@@ -14,6 +14,8 @@ class Graphe{
     public:
         // constructeur
         Graphe(int, int);
+        // destructeur
+        ~Graphe();
         // return le nombre de noeud
         int get_nb_node() {return nb_node;}
         // return le nombre maximal de couleur pour ce graphe

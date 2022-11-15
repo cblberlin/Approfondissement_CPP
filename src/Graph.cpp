@@ -1,5 +1,9 @@
 #include "Graph.hpp"
 
+Graphe::~Graphe(){
+    delete [] Liste;
+}
+
 Graphe::Graphe(int _nb_node, int _max_color) : nb_node(_nb_node), max_color(_max_color){
     Liste = new list<Arret>[nb_node];
 }

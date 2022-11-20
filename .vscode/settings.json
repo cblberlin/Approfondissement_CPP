@@ -19,6 +19,8 @@
         "vector": "c",
         "functional": "c",
         "m_graph.h": "c",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "list": "cpp",
+        "set": "cpp"
     }
 }

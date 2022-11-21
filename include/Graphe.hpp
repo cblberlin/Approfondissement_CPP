@@ -40,7 +40,9 @@ class Graphe{
         // retourne la liste de voisin du noeud i
         set<int> voisins(int);
         // afficher le graphe par liste d'adjacente
-        void afficher_liste();
+        void afficher();
+        // afficher les arrets
+        void afficher_arret();
         // colorer un noeud i par un couleur 
         void colorer(int, int); 
         

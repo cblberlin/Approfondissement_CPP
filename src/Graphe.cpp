@@ -52,7 +52,7 @@ Graphe::Graphe(string nom_fichier){
     f >> input;
     while(input != "edge"){
         f >> input;
-        //cout << input << endl;
+        cout << input << endl;
     }
     int nb_edge;
     f >> nb_node >> nb_edge;
@@ -96,8 +96,7 @@ set<int> Graphe::voisins(int n){
     return s_Voisins[n];
 }
 
-void Graphe::afficher_liste(){
-    //cout << nb_node << endl;
+void Graphe::afficher(){
     cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
     cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
     for(int i = 0; i < nb_node; i++){

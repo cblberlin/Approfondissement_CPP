@@ -63,7 +63,7 @@ int main(){
     */
     Graphe G("tests/myciel3.col");
     //cout << "nb node: " << G.get_nb_node() << ", nb edge: " << G.get_nb_edge() << endl;
-    G.afficher_liste();
+    G.afficher();
     
     return 0;
 }

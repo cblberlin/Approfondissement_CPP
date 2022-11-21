@@ -61,16 +61,9 @@ int main(){
     Graphe G(Grid);
     //cout << "test for print" << endl;
     */
-    //Graphe G("/tests/myciel3.col");
-    ifstream f("/tests/anna.col");
-    string input;
-    f >> input;
-    while(input == "edge"){
-        f >> input;
-        cout << input << endl;
-    }
-    f.close();
-    //G.afficher();
+    Graphe G("tests/myciel3.col");
+    //cout << "nb node: " << G.get_nb_node() << ", nb edge: " << G.get_nb_edge() << endl;
+    G.afficher_liste();
     
     return 0;
 }

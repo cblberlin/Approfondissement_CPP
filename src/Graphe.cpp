@@ -52,7 +52,7 @@ Graphe::Graphe(string nom_fichier){
     f >> input;
     while(input != "edge"){
         f >> input;
-        cout << input << endl;
+        //cout << input << endl;
     }
     int nb_edge;
     f >> nb_node >> nb_edge;
@@ -64,11 +64,21 @@ Graphe::Graphe(string nom_fichier){
     color = vector<int> (nb_node);
     while(!f.eof()){
         f >> e >> i >> j;
-        cout << i << " " << j << endl;
+        //cout << i << " " << j << endl;
         ajout_arret(i-1, j-1);
+        //ajout_arret(j-1, i-1);
         s_Voisins[i-1].insert(j-1);
+        //s_Voisins[j-1].insert(i-1);
     }
     f.close();
+}
+
+int Graphe::get_nb_edge(){
+    int cnt = 0;
+    for(int i = 0; i < nb_node; i++){
+        cnt += v_Arret[i].size();
+    }
+    return cnt/2;
 }
 
 void Graphe::ajout_arret(int n1, int n2){
@@ -86,15 +96,27 @@ set<int> Graphe::voisins(int n){
     return s_Voisins[n];
 }
 
-void Graphe::afficher(){
+void Graphe::afficher_liste(){
     //cout << nb_node << endl;
+    cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
+    cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
     for(int i = 0; i < nb_node; i++){
         set<int>::iterator it = s_Voisins[i].begin();
-        cout << i << ": ";
-        for(it; it!= s_Voisins[i].end(); it++){
-            cout << *it << " ";
+        cout << "liste d'adjacente du noeud " << i << ": ";
+        cout << i << " -> ";
+        for(it; it!= prev(s_Voisins[i].end()); it++){
+            cout << *it << " -> ";
         }
-        cout << endl;
+        cout << *(it++) << endl;
     }
+}
+
+void Graphe::afficher_arret(){
+    
+}
+
+void Graphe::colorer(int i, int j){
+    assert(0 < j < max_color && 0 < i < nb_node);
+    color[i] = j;
 }
 

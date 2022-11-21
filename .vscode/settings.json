@@ -21,6 +21,10 @@
         "m_graph.h": "c",
         "iostream": "cpp",
         "list": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "iosfwd": "cpp",
+        "__bit_reference": "cpp",
+        "filesystem": "cpp",
+        "ostream": "cpp"
     }
 }

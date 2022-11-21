@@ -29,6 +29,8 @@ class Graphe{
         ~Graphe();
         // return le nombre de noeud
         int get_nb_node() {return nb_node;}
+        // return le nombre d'arret
+        int get_nb_edge();
         // return le nombre maximal de couleur pour ce graphe
         int get_max_color() {return max_color;}
         // ajouter l'arret dans le graphe
@@ -38,7 +40,8 @@ class Graphe{
         // retourne la liste de voisin du noeud i
         set<int> voisins(int);
         // afficher le graphe par liste d'adjacente
-        void afficher();
-        set<int> operator[] (int);
+        void afficher_liste();
+        // colorer un noeud i par un couleur 
+        void colorer(int, int); 
         
 };

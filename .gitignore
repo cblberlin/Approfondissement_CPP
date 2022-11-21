@@ -35,5 +35,5 @@
 .DS_Store
 
 # Tests
-.col
-.col.b
+*.col
+*.col.b

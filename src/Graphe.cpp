@@ -52,7 +52,7 @@ Graphe::Graphe(string nom_fichier){
     f >> input;
     while(input != "edge"){
         f >> input;
-        cout << input << endl;
+        //cout << input << endl;
     }
     int nb_edge;
     f >> nb_node >> nb_edge;

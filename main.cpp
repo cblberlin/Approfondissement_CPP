@@ -1,8 +1,9 @@
 #include <iostream>
 #include "Sudoku.hpp"
 #include "Sudoku_solver.hpp"
-#include "Graph.hpp"
+#include "Graphe.hpp"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ int main(){
         s.print_grid();
     }
     */
-
+    /*
     vector<vector<int> > Grid{
         {3, 0, 6, 5, 0, 8, 4, 0, 0},
         {5, 2, 0, 0, 0, 0, 0, 0, 0},
@@ -56,8 +57,20 @@ int main(){
         {0, 0, 0, 0, 0, 0, 0, 7, 4},
         {0, 0, 5, 2, 0, 6, 3, 0, 0}
         };
+    //cout << "test for constructor" << endl;
     Graphe G(Grid);
-    G.afficher();
+    //cout << "test for print" << endl;
+    */
+    //Graphe G("/tests/myciel3.col");
+    ifstream f("/tests/anna.col");
+    string input;
+    f >> input;
+    while(input == "edge"){
+        f >> input;
+        cout << input << endl;
+    }
+    f.close();
+    //G.afficher();
     
     return 0;
 }

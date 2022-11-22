@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Graphe_solveur{
+class Graphe_solveur {
     private:
         Graphe G;
     public:

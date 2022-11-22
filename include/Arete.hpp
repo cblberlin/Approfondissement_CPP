@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class Arret{
+class Arete{
     private:
-        pair<int, int> arret;
+        pair<int, int> arete;
     public:
         // constructeur
-        Arret(int, int);
+        Arete(int, int);
 
         // destructeur
         

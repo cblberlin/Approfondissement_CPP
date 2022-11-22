@@ -1,12 +1,12 @@
 #include "Graphe.hpp"
 
 Graphe::~Graphe(){
-    delete [] v_Arret;
+    delete [] v_Arete;
     delete [] s_Voisins;
 }
 
 Graphe::Graphe(int _nb_node, int _max_color) : nb_node(_nb_node), max_color(_max_color){
-    v_Arret = new vector<Arret>[nb_node];
+    v_Arete = new vector<Arete>[nb_node];
     s_Voisins = new set<int>[nb_node];
 
     // Initialiser tous les noeud comme non-coloré
@@ -21,7 +21,7 @@ Graphe::Graphe(vector<vector<int> > G){
     int n = G.size();
     nb_node = n;
     max_color = n;
-    v_Arret = new vector<Arret>[n];
+    v_Arete = new vector<Arete>[n];
     s_Voisins = new set<int>[n];
     color = vector<int> (n);
     // créer les conteneurs
@@ -34,8 +34,8 @@ Graphe::Graphe(vector<vector<int> > G){
         for(int j = 0; j < G.size(); j++){
             //cout << "test" << endl;
             if(G[i][j] != 0){
-                ajout_arret(i, j);
-                ajout_arret(j, i);
+                ajout_arete(i, j);
+                ajout_arete(j, i);
                 s_Voisins[i].insert(j);
                 s_Voisins[j].insert(i);
             }
@@ -59,14 +59,14 @@ Graphe::Graphe(string nom_fichier){
     max_color = nb_node;
     int i, j;
     char e;
-    v_Arret = new vector<Arret>[nb_node];
+    v_Arete = new vector<Arete>[nb_node];
     s_Voisins = new set<int>[nb_node];
     color = vector<int> (nb_node);
     while(!f.eof()){
         f >> e >> i >> j;
         //cout << i << " " << j << endl;
-        ajout_arret(i-1, j-1);
-        //ajout_arret(j-1, i-1);
+        ajout_arete(i-1, j-1);
+        //ajout_Arete(j-1, i-1);
         s_Voisins[i-1].insert(j-1);
         //s_Voisins[j-1].insert(i-1);
     }
@@ -76,14 +76,14 @@ Graphe::Graphe(string nom_fichier){
 int Graphe::get_nb_edge(){
     int cnt = 0;
     for(int i = 0; i < nb_node; i++){
-        cnt += v_Arret[i].size();
+        cnt += v_Arete[i].size();
     }
     return cnt/2;
 }
 
-void Graphe::ajout_arret(int n1, int n2){
-    v_Arret[n1].push_back(Arret(n1, n2));
-    v_Arret[n2].push_back(Arret(n2, n1));
+void Graphe::ajout_arete(int n1, int n2){
+    v_Arete[n1].push_back(Arete(n1, n2));
+    v_Arete[n2].push_back(Arete(n2, n1));
     s_Voisins[n1].insert(n2);
     s_Voisins[n2].insert(n1);
 }
@@ -110,7 +110,7 @@ void Graphe::afficher(){
     }
 }
 
-void Graphe::afficher_arret(){
+void Graphe::afficher_arete(){
     
 }
 

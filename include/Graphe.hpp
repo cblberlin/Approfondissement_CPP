@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Arret.hpp"
+#include "Arete.hpp"
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -12,10 +12,10 @@
 using namespace std;
 
 class Graphe{
-    private:
+    protected:
         int nb_node;
         int max_color;
-        vector <Arret> * v_Arret;
+        vector <Arete> *v_Arete;
         set <int> *s_Voisins;
         vector <int> color;
     public:
@@ -34,7 +34,7 @@ class Graphe{
         // return le nombre maximal de couleur pour ce graphe
         int get_max_color() {return max_color;}
         // ajouter l'arret dans le graphe
-        void ajout_arret(int, int);
+        void ajout_arete(int, int);
         // retourne le nombre de voisins du noeud i
         int nb_voisins(int);
         // retourne la liste de voisin du noeud i
@@ -42,7 +42,7 @@ class Graphe{
         // afficher le graphe par liste d'adjacente
         void afficher();
         // afficher les arrets
-        void afficher_arret();
+        void afficher_arete();
         // colorer un noeud i par un couleur 
         void colorer(int, int); 
         

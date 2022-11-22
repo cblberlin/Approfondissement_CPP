@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Graphe.hpp"
+#include "Graphe_colore.hpp"
 #include <algorithm>
 #include <iterator>
 
 using namespace std;
 
-class Graphe_solveur {
+class Graphe_solveur{
     private:
-        Graphe G;
+        Graphe_colore G;
     public:
         // si un tentative de coloration est valide par les contraintes
         bool est_valide(int, int);
         // resoud le problème par backtracking
-        void solve_backtracking();
+        bool solve_backtracking(int);
 };

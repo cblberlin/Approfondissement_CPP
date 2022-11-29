@@ -156,3 +156,7 @@ vector<int> Graphe_colore::tableau_nombre_voisins(){
     }
     return res;
 }
+
+const int Graphe_colore::get_color(int i){
+    return color[i];
+}

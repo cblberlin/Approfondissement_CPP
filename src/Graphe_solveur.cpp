@@ -55,29 +55,3 @@ bool Graphe_solveur::solve_backtracking(int sommet) { // (int sommet, int couleu
     }
     return false;
 }
-
-/*    vector<int> vois_bis = vois;
-
-    auto non_colore = [] (int i) {return color[i] == -1;};
-    auto valeur = find_if(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), non_colore);
-    if(valeur == nbre_couleurs_dispos.end()) {return true;}
-        //bool assertion = false;
-        auto compteur = count_if(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), non_colore);
-        int min_couleur = min_element(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), [] (int i) {return color[i] == -1});
-        // On prendra en compte le critère supplémentaire "a le plus de voisins dans le cas ou plusieurs sommet ont cette valeur minimum" dès que possible.
-        // En attendant, le sommet sera le plus petit en terme de notation à minimiser le nombre de couleurs disponibles.
-        int sommet_cible = distance(nbre_couleurs_dispos.begin(), min_couleur);
-        for(int i = 0; i < max_color; i++) {
-            if(est_valide(sommet_cible, i)) {
-                colorer(sommet_cible,i);
-                //assertion = true;
-                break;
-                //color[sommet_cible] == i;
-            }
-        }
-        if(solve_backtracking() == false) {
-            color[sommet_cible] = -1;
-        }
-       
-    return false;
-}*/

@@ -87,6 +87,9 @@ class Graphe_colore{
         // retourne la liste de voisin du noeud i
         set<int> voisins(int) const;
 
+        // retourne le tableau de voisins pour chaque sommet
+        set<int>* vec_voisins() const;
+
         // afficher le graphe par liste d'adjacente
         void afficher();
 
@@ -103,5 +106,7 @@ class Graphe_colore{
         void afficher_color();
 
         void afficher_nb_voisins();
+
+        vector<int> tableau_nombre_voisins();
         
 };

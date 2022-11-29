@@ -1,0 +1,22 @@
+INCLDIR := include
+OBJDIR := obj
+SRCDIR := src
+BINDIR := bin
+
+CC := g++
+CXXFLAGS:= -Wall -std=c++11 -I$(INCLDIR)
+
+EXEC = main tests_unitaire
+
+all: $(EXEC)
+
+main: main.cpp
+	$(CC) -o $@ $^ $(CXXFLAGS)
+
+	
+
+
+
+# $@ : renvoie la cible
+# $ˆ : renvoie la liste des dépendances
+# $< : renvoie la première dépendance

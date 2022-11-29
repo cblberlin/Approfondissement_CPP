@@ -99,6 +99,10 @@ set<int> Graphe_colore::voisins(int n) const{
     return s_Voisins[n];
 }
 
+set<int>* Graphe_colore::vec_voisins() const{
+    return s_Voisins;
+}
+
 void Graphe_colore::afficher(){
     //cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
     //cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
@@ -126,7 +130,7 @@ void Graphe_colore::afficher_arete(){
 }
 
 void Graphe_colore::colorer(int i, int j){
-    assert(0 < j < max_color && 0 < i < nb_node);
+    assert(-1 <= j && j < max_color && 0 <= i && i < nb_node);
     color[i] = j;
 }
 
@@ -143,4 +147,12 @@ void Graphe_colore::afficher_nb_voisins(){
     for(int i = 0; i < nb_node; i++){
         cout << nb_voisins(i) << " ";
     }
+}
+
+vector<int> Graphe_colore::tableau_nombre_voisins(){
+    vector<int> res;
+    for(int i = 0; i < nb_node; i++){
+        res.push_back(nb_voisins(i));
+    }
+    return res;
 }

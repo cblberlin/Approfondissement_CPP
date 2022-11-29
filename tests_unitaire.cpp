@@ -75,5 +75,10 @@ int main(){
         }
         cout << ")" << endl;
     }
+
+    Graphe_solveur G_solve(G);
+    G_solve.solve_backtracking(0);
+    G.afficher_color();
+
     return 0;
 }

@@ -1,5 +1,8 @@
 #include "Graphe_solveur.hpp"
 
+Graphe_solveur::Graphe_solveur(Graphe_colore G_): G(G_){
+}
+
 bool Graphe_solveur::est_valide(int noeud, int couleur) {
     for(int i = 0; i < G.voisins(noeud).size(); i++) {
         if(G.get_color(i) == couleur) {

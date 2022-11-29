@@ -15,7 +15,7 @@ SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(subst $(SRCDIR)/,$(OBJDIR)/, $(subst .cpp,.o, $(SRCS)))
 
 # Define here your main source files separated by spaces (without suffix!)
-EXEC = main
+EXEC = main tests_unitaire
 
 #Phony = do not represent a file
 #.PHONY: all

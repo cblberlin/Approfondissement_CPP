@@ -1,11 +1,11 @@
 #include "Graphe_colore.hpp"
 
-Graphe::~Graphe(){
+Graphe_colore::~Graphe_colore(){
     delete [] v_Arete;
     delete [] s_Voisins;
 }
 
-Graphe::Graphe(int _nb_node, int _max_color) : nb_node(_nb_node), max_color(_max_color){
+Graphe_colore::Graphe_colore(int _nb_node, int _max_color) : nb_node(_nb_node), max_color(_max_color){
     v_Arete = new vector<Arete>[nb_node];
     s_Voisins = new set<int>[nb_node];
 
@@ -16,7 +16,7 @@ Graphe::Graphe(int _nb_node, int _max_color) : nb_node(_nb_node), max_color(_max
     }
 }
 
-Graphe::Graphe(vector<vector<int> > G){
+Graphe_colore::Graphe_colore(vector<vector<int> > G){
     assert(G.size() == G[0].size());
     int n = G.size();
     nb_node = n;
@@ -43,7 +43,7 @@ Graphe::Graphe(vector<vector<int> > G){
     }
 }
 
-Graphe::Graphe(string nom_fichier){
+Graphe_colore::Graphe_colore(string nom_fichier){
     //string fichier_dir = "tests/";
 
     ifstream f(nom_fichier);
@@ -73,7 +73,7 @@ Graphe::Graphe(string nom_fichier){
     f.close();
 }
 
-const int Graphe::get_nb_edge(){
+const int Graphe_colore::get_nb_edge(){
     int cnt = 0;
     for(int i = 0; i < nb_node; i++){
         cnt += v_Arete[i].size();
@@ -81,24 +81,27 @@ const int Graphe::get_nb_edge(){
     return cnt/2;
 }
 
-void Graphe::ajout_arete(int n1, int n2){
+void Graphe_colore::ajout_arete(int n1, int n2){
     v_Arete[n1].push_back(Arete(n1, n2));
     v_Arete[n2].push_back(Arete(n2, n1));
     s_Voisins[n1].insert(n2);
     s_Voisins[n2].insert(n1);
 }
 
-const int Graphe::nb_voisins(int n){
+const int Graphe_colore::nb_voisins(int n){
+    //cout << n << ":" << s_Voisins[n].size() << endl;
+    assert(n < nb_node);
     return s_Voisins[n].size();
 }
 
-const set<int> Graphe::voisins(int n){
+set<int> Graphe_colore::voisins(int n) const{
+    assert(n < nb_node);
     return s_Voisins[n];
 }
 
-void Graphe::afficher(){
-    cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
-    cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
+void Graphe_colore::afficher(){
+    //cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
+    //cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
     for(int i = 0; i < nb_node; i++){
         set<int>::iterator it = s_Voisins[i].begin();
         cout << "liste d'adjacente du noeud " << i << ": ";
@@ -110,16 +113,34 @@ void Graphe::afficher(){
     }
 }
 
-void Graphe::afficher_arete(){
-    
+void Graphe_colore::afficher_arete(){
+    int cnt = 0;
+    for(int i = 0; i < nb_node; i++){
+        vector<Arete>::iterator it;
+        for(it = v_Arete[i].begin(); it != v_Arete[i].end(); it++){
+            it->afficher();
+            cnt++;
+        }
+    }
+    cout << "le nombre total d'arête est " << cnt << endl;
 }
 
-void Graphe::colorer(int i, int j){
+void Graphe_colore::colorer(int i, int j){
     assert(0 < j < max_color && 0 < i < nb_node);
     color[i] = j;
 }
 
-const set<int> Graphe::get_voisins(int i){
-    return s_Voisins[i];
+void Graphe_colore::afficher_color(){
+    vector<int>::iterator it;
+    cout << "la coloration est: [";
+    for(it = color.begin(); it != color.end()-1; it++){
+        cout << *it << ","; 
+    }
+    cout << *it << "]" << endl;
 }
 
+void Graphe_colore::afficher_nb_voisins(){
+    for(int i = 0; i < nb_node; i++){
+        cout << nb_voisins(i) << " ";
+    }
+}

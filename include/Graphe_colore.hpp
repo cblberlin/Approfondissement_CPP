@@ -7,6 +7,7 @@
 #include <vector>
 #include <set>
 #include <cmath>
+#include <iterator>
 #include <exception>
 
 using namespace std;
@@ -84,18 +85,23 @@ class Graphe_colore{
         const int nb_voisins(int);
 
         // retourne la liste de voisin du noeud i
-        const set<int> voisins(int);
+        set<int> voisins(int) const;
 
         // afficher le graphe par liste d'adjacente
         void afficher();
-        // afficher les arrets
+
+        // afficher les arrets orientés et afficher le nombre des arête (doit être 2*nb_edge)
         void afficher_arete();
+
         // colorer un noeud i par un couleur 
         void colorer(int, int);
-        // retourne le nombre de voisin pour noeud i
-        const set<int> get_voisins(int);
 
         // retourne le couleur de noeud i
         const int get_color(int);
+
+        // afficher la coloration du sommet
+        void afficher_color();
+
+        void afficher_nb_voisins();
         
 };

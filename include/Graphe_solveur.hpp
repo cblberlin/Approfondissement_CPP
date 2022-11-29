@@ -2,6 +2,7 @@
 
 #include "Graphe_colore.hpp"
 #include <algorithm>
+#include <vector>
 #include <iterator>
 
 using namespace std;

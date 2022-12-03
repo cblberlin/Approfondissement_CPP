@@ -1,6 +1,7 @@
 #include "Graphe_solveur.hpp"
 
-Graphe_solveur::Graphe_solveur(Graphe_colore G_): G(G_){
+Graphe_solveur::Graphe_solveur(Graphe_colore & G_) : G(G_){
+    G = G_;
 }
 
 bool Graphe_solveur::est_valide(int noeud, int couleur) {

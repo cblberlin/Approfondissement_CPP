@@ -149,11 +149,31 @@ void Graphe_colore::afficher_nb_voisins(){
     }
 }
 
-vector<int> Graphe_colore::tableau_nombre_voisins(){
+vector<int> Graphe_colore::tab_couleurs_dispo(int i){
+    vector<int> couleur_dispo;
     vector<int> res;
-    for(int i = 0; i < nb_node; i++){
-        res.push_back(nb_voisins(i));
+
+    for(auto it = voisins(i).begin(); it != voisins(i).end(); it++){
+        couleur_dispo.push_back(color[*it]);
     }
+
+    sort(couleur_dispo.begin(), couleur_dispo.end());
+
+    couleur_dispo.erase(unique(couleur_dispo.begin(), couleur_dispo.end()), couleur_dispo.end());\
+
+    int j = 0;
+
+    if(couleur_dispo[j] == -1){j++;}
+
+    for(int k = 0; k < max_color; k++){
+        if(k == couleur_dispo[j] && j < couleur_dispo.size()){
+            j++;
+        }
+        else{
+            res.push_back(k);
+        }
+    }
+
     return res;
 }
 

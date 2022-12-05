@@ -8,6 +8,7 @@
 #include <set>
 #include <cmath>
 #include <iterator>
+#include <algorithm>
 #include <exception>
 
 using namespace std;
@@ -107,6 +108,6 @@ class Graphe_colore{
 
         void afficher_nb_voisins();
 
-        vector<int> tableau_nombre_voisins();
+        vector<int> tab_couleurs_dispo(int);
         
 };

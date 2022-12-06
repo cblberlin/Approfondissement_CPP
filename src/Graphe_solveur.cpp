@@ -11,13 +11,15 @@ bool Graphe_solveur::est_valide(int noeud, int couleur) {
         }
     }
     return true;
-    //vector<int>::iterator it;
-    //for(it=adj[u].begin();it!=adj[u].end();++it){
-    //if(color[*it] == couleur) return false;
-    //}
-    //return true;
+
 }
 
+bool Graphe_solveur::solve_backtracking(int sommet){
+    // initialisation un tab pour le nombre de voisin pour chaque sommet
+    
+
+}
+/*
 vector<int> Graphe_solveur::tableau_nombre_couleurs_dispos() {
     int n = G.get_nb_node();
     vector<int> resultat_auxiliaire = G.tableau_nombre_voisins();
@@ -59,3 +61,5 @@ bool Graphe_solveur::solve_backtracking(int sommet) { // (int sommet, int couleu
     }
     return false;
 }
+*/
+

@@ -76,9 +76,27 @@ int main(){
         cout << ")" << endl;
     }
 
+    cout << "test pour le tableau de nombre voisins()" << endl;
+    vector<int> tab_nb_voisins = G.tab_nb_voisins();
+    for(int i = 0; i < tab_nb_voisins.size(); i++){
+        cout << tab_nb_voisins[i] << " ";
+    }
+    cout << endl;
+
+    cout << "test pour le tableau de couleur possible" << endl;
+    for(int i = 0; i < G.get_nb_node(); i++){
+        cout << "les couleurs possibles pour sommet " << i << ":";
+        vector<int> tab_tmp = G.tab_couleurs_dispo(i);
+        for(int j = 0; j < tab_tmp.size(); j++){
+            cout << tab_tmp[j] << " ";
+        }
+        cout << endl;
+    }
+
+
     Graphe_solveur G_solve(G);
-    G_solve.solve_backtracking(0);
-    G.afficher_color();
+    //G_solve.solve_backtracking(0);
+    //G.afficher_color();
 
     return 0;
 }

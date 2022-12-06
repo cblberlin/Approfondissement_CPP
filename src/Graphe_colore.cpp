@@ -149,19 +149,21 @@ void Graphe_colore::afficher_nb_voisins(){
     }
 }
 
-vector<int> Graphe_colore::tab_couleurs_dispo(int i){
+const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
     vector<int> couleur_dispo;
     vector<int> res;
 
-    for(auto it = voisins(i).begin(); it != voisins(i).end(); it++){
-        couleur_dispo.push_back(color[*it]);
+    for(auto it : voisins(i)){
+        //cout << "test" << endl;
+        //cout << color[*it] << " ";
+        couleur_dispo.push_back(color[it]);
     }
 
     sort(couleur_dispo.begin(), couleur_dispo.end());
 
     couleur_dispo.erase(unique(couleur_dispo.begin(), couleur_dispo.end()), couleur_dispo.end());\
 
-    int j = 0;
+    int j = -1;
 
     if(couleur_dispo[j] == -1){j++;}
 
@@ -179,4 +181,12 @@ vector<int> Graphe_colore::tab_couleurs_dispo(int i){
 
 const int Graphe_colore::get_color(int i){
     return color[i];
+}
+
+const vector<int> Graphe_colore::tab_nb_voisins(){
+    vector<int> res;
+    for(int i = 0; i < nb_node; i++){
+        res.push_back(nb_voisins(i));
+    }
+    return res;
 }

@@ -13,7 +13,7 @@ class Graphe_solveur{
     public:
         Graphe_solveur( Graphe_colore &);
         // Renvoie un tableau dont chaque élément correspond au nombre de couleurs disponibles du sommet de même indice du graphe.
-        vector<int> tableau_nombre_couleurs_dispos();
+        //vector<int> tableau_nombre_couleurs_dispos();
         // si un tentative de coloration est valide par les contraintes
         bool est_valide(int, int);
         // resoud le problème par backtracking

@@ -1,6 +1,7 @@
 #include "Arete.hpp"
 #include "Graphe_colore.hpp"
 #include "Graphe_solveur.hpp"
+#include "Sudoku.hpp"
 #include <iostream>
 
 int main(){
@@ -18,7 +19,7 @@ int main(){
     */
 
     // test pour le constructeur
-    Graphe_colore G(10, 10);
+    Graphe_colore G(10, 3);
 
     // ajouter les arêtes, ici les arête sont considérés comme non-directionnel
     G.ajout_arete(0, 1);
@@ -52,9 +53,24 @@ int main(){
     // test colorer
     cout << "les sommets sont colorés comme ci-dessous:" << endl;
     G.afficher_color();
-
-    G.colorer(0, 1);
-    cout << "après la coloration, le tableau devient:" << endl;
+    for(int i = 0; i < G.get_nb_node(); i++){
+        cout << "les couleurs possibles pour sommet " << i << ":";
+        vector<int> tab_tmp = G.tab_couleurs_dispo(i);
+        for(int j = 0; j < tab_tmp.size(); j++){
+            cout << tab_tmp[j] << " ";
+        }
+        cout << endl;
+    }
+    G.colorer(0, 0);
+    cout << "après la coloration de sommet 0 à 0, le tableau devient:" << endl;
+    for(int i = 0; i < G.get_nb_node(); i++){
+        cout << "les couleurs possibles pour sommet " << i << ":";
+        vector<int> tab_tmp = G.tab_couleurs_dispo(i);
+        for(int j = 0; j < tab_tmp.size(); j++){
+            cout << tab_tmp[j] << " ";
+        }
+        cout << endl;
+    }
     G.afficher_color();
 
     // test nb_voisins() doit être 3 ... 3 parce que un graphe Petersen est un graphe dont tous les sommets ont 3 voisins
@@ -83,20 +99,15 @@ int main(){
     }
     cout << endl;
 
-    cout << "test pour le tableau de couleur possible" << endl;
-    for(int i = 0; i < G.get_nb_node(); i++){
-        cout << "les couleurs possibles pour sommet " << i << ":";
-        vector<int> tab_tmp = G.tab_couleurs_dispo(i);
-        for(int j = 0; j < tab_tmp.size(); j++){
-            cout << tab_tmp[j] << " ";
-        }
-        cout << endl;
-    }
-
+    
 
     Graphe_solveur G_solve(G);
     //G_solve.solve_backtracking(0);
     //G.afficher_color();
-
+    /*
+    vector< vector<int> > grid{ {0, 0, 0, 1}, {3, 0, 4, 0}, {0, 3, 0, 0}, {2, 0, 0, 0} };
+    Sudoku S(grid);
+    S.afficher();
+    */
     return 0;
 }

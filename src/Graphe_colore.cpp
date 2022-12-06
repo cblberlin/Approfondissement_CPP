@@ -154,8 +154,6 @@ const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
     vector<int> res;
 
     for(auto it : voisins(i)){
-        //cout << "test" << endl;
-        //cout << color[*it] << " ";
         couleur_dispo.push_back(color[it]);
     }
 
@@ -163,7 +161,7 @@ const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
 
     couleur_dispo.erase(unique(couleur_dispo.begin(), couleur_dispo.end()), couleur_dispo.end());\
 
-    int j = -1;
+    int j = 0;
 
     if(couleur_dispo[j] == -1){j++;}
 

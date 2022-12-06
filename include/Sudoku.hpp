@@ -9,7 +9,7 @@
 #include <string>
 
 using namespace std;
-/*
+
 class Sudoku : public Graphe_colore{
     private:
         // le grid de sudoku
@@ -20,8 +20,7 @@ class Sudoku : public Graphe_colore{
  
         // constructeur par un fichier
         Sudoku(string nom_fichier);
+        
         // afficher le grid
         void afficher_grid();
-        
 };
-*/

@@ -108,6 +108,8 @@ class Graphe_colore{
 
         void afficher_nb_voisins();
 
-        vector<int> tab_couleurs_dispo(int);
+        const vector<int> tab_couleurs_dispo(int);
+
+        const vector<int> tab_nb_voisins();
         
 };

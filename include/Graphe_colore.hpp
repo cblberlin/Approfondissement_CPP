@@ -29,6 +29,9 @@ class Graphe_colore{
 
         // un vector qui sauvegarde le couleur coloré pour les noeuds
         vector <int> color;
+
+        // un vector qui sauvegarde le nombre de couleur disponible pour chaque sommet
+        // vector <int> color_dispo;
     public:
         /*
         constructeur par 2 entiers
@@ -58,6 +61,8 @@ class Graphe_colore{
 
         // destructeur pour libérer le mémoire
         ~Graphe_colore();
+        
+        void Init();
 
         /*
         retourner le nombre de node
@@ -106,10 +111,15 @@ class Graphe_colore{
         // afficher la coloration du sommet
         void afficher_color();
 
+        // afficher le nombre de voisins pour tous les sommets
         void afficher_nb_voisins();
 
+        // stocker les couleurs possibles pour le sommet i
         const vector<int> tab_couleurs_dispo(int);
 
+        // calculer le vector de nombre de voisins pour chaque sommet
         const vector<int> tab_nb_voisins();
         
+        // retourne le sommet qui ayant le moins de couleur et plus de voisins possible
+        const int sommet_meilleur();
 };

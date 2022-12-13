@@ -99,7 +99,9 @@ int main(){
     }
     cout << endl;
 
-    
+    cout << "test pour le meilleur sommet" << endl;
+
+    cout << G.sommet_meilleur() << endl;
 
     Graphe_solveur G_solve(G);
     //G_solve.solve_backtracking(0);

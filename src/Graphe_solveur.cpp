@@ -13,12 +13,26 @@ bool Graphe_solveur::est_valide(int noeud, int couleur) {
     return true;
 
 }
-
+/*
 bool Graphe_solveur::solve_backtracking(int sommet){
     // initialisation un tab pour le nombre de voisin pour chaque sommet
+    int tmp = G.sommet_meilleur();
+
+    if(tmp == -1){
+        return true;
+    }
+
+    vector<int> tab_couleurs_dispo = G.tab_couleurs_dispo(sommet);
+
+    int couleur = 0;
     
+    while(i < tab_couleurs_dispo.size()){
+        G.colorer();
+    }
 
 }
+*/
+
 /*
 vector<int> Graphe_solveur::tableau_nombre_couleurs_dispos() {
     int n = G.get_nb_node();

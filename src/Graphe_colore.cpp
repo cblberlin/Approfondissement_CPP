@@ -11,6 +11,7 @@ Graphe_colore::Graphe_colore(int _nb_node, int _max_color) : nb_node(_nb_node), 
 
     // Initialiser tous les noeud comme non-coloré
     color.resize(nb_node);
+    //color_dispo.resize(nb_node);
     for(int i = 0; i < nb_node; i++){
         color[i] = -1;
     }
@@ -24,6 +25,7 @@ Graphe_colore::Graphe_colore(vector<vector<int> > G){
     v_Arete = new vector<Arete>[n];
     s_Voisins = new set<int>[n];
     color = vector<int> (n);
+    //color_dispo = vector<int> (n);
     // créer les conteneurs
     // cout << "test" << endl;
     //cout << G.size() << endl;
@@ -187,4 +189,32 @@ const vector<int> Graphe_colore::tab_nb_voisins(){
         res.push_back(nb_voisins(i));
     }
     return res;
+}
+
+const int Graphe_colore::sommet_meilleur(){
+    int sommet_mini = 0;
+
+    while(color[sommet_mini] != -1 && sommet_mini < nb_node){
+        sommet_mini++;
+    }
+
+    if(sommet_mini == nb_node){
+        return -1;
+    }
+
+    for(int i = sommet_mini + 1; i < nb_node; i++){
+        if(color[i] == -1){
+            int tmp1 = tab_couleurs_dispo(sommet_mini).size();
+            int tmp2 = tab_couleurs_dispo(i).size();
+            if(tmp1 > tmp2){
+                sommet_mini = i;
+            }else if(tmp1 == tmp2){
+                if(nb_voisins(sommet_mini) < nb_voisins(i)){
+                    sommet_mini = i;
+                }
+            }
+        }
+    }
+
+    return sommet_mini;
 }

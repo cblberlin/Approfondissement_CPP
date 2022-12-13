@@ -10,8 +10,6 @@ int main(){
     // Test pour le constructeur par 2 int
     Graphe_colore G1(5, 5);
     
-
-    
     Graphe_colore G3("tests/myciel3.col");
     //cout << "nb node: " << G.get_nb_node() << ", nb edge: " << G.get_nb_edge() << endl;
     G3.afficher();

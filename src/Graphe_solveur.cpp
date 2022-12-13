@@ -13,25 +13,38 @@ bool Graphe_solveur::est_valide(int noeud, int couleur) {
     return true;
 
 }
-/*
-bool Graphe_solveur::solve_backtracking(int sommet){
+
+bool Graphe_solveur::solve_backtracking(){
     // initialisation un tab pour le nombre de voisin pour chaque sommet
     int tmp = G.sommet_meilleur();
 
-    if(tmp == -1){
+    if(tmp == G.get_nb_node()){
+        return true;
+    }
+    
+    vector<int> tab_couleurs_dispo = G.tab_couleurs_dispo(tmp);
+    
+    int i = 0;
+    bool cond = false;
+
+    while( !cond && i < tab_couleurs_dispo.size()){
+        G.colorer(tmp, tab_couleurs_dispo[i]);
+        i++;
+        cond = solve_backtracking();
+        if(cond == false){
+            G.colorer(tmp, -1);
+        }
+    }
+    if(cond){
         return true;
     }
 
-    vector<int> tab_couleurs_dispo = G.tab_couleurs_dispo(sommet);
-
-    int couleur = 0;
-    
-    while(i < tab_couleurs_dispo.size()){
-        G.colorer();
-    }
-
+    return false;
 }
-*/
+
+void Graphe_solveur::afficher_resultat(){
+    G.afficher_color();
+}
 
 /*
 vector<int> Graphe_solveur::tableau_nombre_couleurs_dispos() {

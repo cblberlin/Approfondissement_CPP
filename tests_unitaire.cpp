@@ -102,14 +102,25 @@ int main(){
     cout << "test pour le meilleur sommet" << endl;
 
     cout << G.sommet_meilleur() << endl;
+    cout << "test pour le backtracking" << endl;
 
+    G.Init();
     Graphe_solveur G_solve(G);
-    //G_solve.solve_backtracking(0);
-    //G.afficher_color();
+    //cout << "test" << endl;
+    
+    
+    G_solve.solve_backtracking();
+    // 0 1 1 2 0 1 2 0 0 2
+    G_solve.afficher_resultat();
     /*
     vector< vector<int> > grid{ {0, 0, 0, 1}, {3, 0, 4, 0}, {0, 3, 0, 0}, {2, 0, 0, 0} };
     Sudoku S(grid);
     S.afficher();
     */
+/*
+    Graphe_colore G2(2,2);
+    G.ajout_arete(0, 1);
+    G.afficher();
+*/
     return 0;
 }

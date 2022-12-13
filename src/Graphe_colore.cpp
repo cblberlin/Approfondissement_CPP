@@ -75,6 +75,12 @@ Graphe_colore::Graphe_colore(string nom_fichier){
     f.close();
 }
 
+void Graphe_colore::Init(){
+    for(int i = 0; i < nb_node; i++){
+        color[i] = -1;
+    }
+}
+
 const int Graphe_colore::get_nb_edge(){
     int cnt = 0;
     for(int i = 0; i < nb_node; i++){
@@ -97,6 +103,7 @@ const int Graphe_colore::nb_voisins(int n){
 }
 
 set<int> Graphe_colore::voisins(int n) const{
+    //cout << n << endl;
     assert(n < nb_node);
     return s_Voisins[n];
 }
@@ -132,7 +139,7 @@ void Graphe_colore::afficher_arete(){
 }
 
 void Graphe_colore::colorer(int i, int j){
-    assert(-1 <= j && j < max_color && 0 <= i && i < nb_node);
+    //assert(-1 <= j && j < max_color && 0 <= i && i <= nb_node);
     color[i] = j;
 }
 
@@ -199,7 +206,7 @@ const int Graphe_colore::sommet_meilleur(){
     }
 
     if(sommet_mini == nb_node){
-        return -1;
+        return nb_node;
     }
 
     for(int i = sommet_mini + 1; i < nb_node; i++){

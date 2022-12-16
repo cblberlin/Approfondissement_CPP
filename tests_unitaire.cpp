@@ -112,10 +112,16 @@ int main(){
     G_solve.solve_backtracking();
     // 0 1 1 2 0 1 2 0 0 2
     G_solve.afficher_resultat();
-    
+
     vector< vector<int> > grid{ {0, 0, 0, 1}, {3, 0, 4, 0}, {0, 3, 0, 0}, {2, 0, 0, 0} };
     Sudoku S(grid);
     S.afficher();
+    S.afficher_grid();
+    
+    Graphe_solveur G_solve2(S);
+    G_solve2.solve_backtracking();
+    S.afficher_grid();
+    //S.afficher_grid();
     
 /*
     Graphe_colore G2(2,2);

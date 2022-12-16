@@ -2,32 +2,55 @@
 
 Sudoku::Sudoku(vector<vector<int> > Grid) : Graphe_colore(Grid.size()*Grid.size(), Grid.size()){
     assert(Grid.size() == Grid[0].size());
-    //using Graphe_colore::Graphe_colore;
     grid = Grid;
     int n = Grid.size();
-    for(int i = 0; i < n*n; i++){
-        for(int j = 0; j < n*n - 1; j++){
-            // ajouter les couleurs pour les cases sont déjà remplis
-            if(Grid[i][j] != 0){
-                color[i*n + j] = Grid[i][j];
-            }
-            // sinon c'est -1
-            color[i*n + j] = -1;
+    cout << n<< endl;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            int u = i*n + j;
 
+            if(Grid[i][j] != 0){
+                colorer(u, Grid[i][j] - 1);
+            }
+            
             // ajoute arete pour ligne
-            ajout_arete(i*n + j, )
+            for(int k = 0; k < n; k++){
+                if(k == j) continue;
+                int v = i*n + k;
+                ajout_arete(u, v);
+            }
+
+            // ajoute arete pour colone
+            for(int k = 0; k < n; k++){
+                if(k == i) continue;
+                int v = k*n + j;
+                ajout_arete(u, v);
+            }
+
+            // ajoute arete pour box
+            int box = (int)sqrt(n);
+            int ligne = i / box;
+            int col = j / box;
+            for(int k = 0; k < box; k++){
+                for(int l = 0; l < box; l++){
+                    int x = ligne * box + k;
+                    int y = col * box + l;
+                    if( x == i && y == j) continue;
+                    int v = x * n + y;
+                    ajout_arete(u, v);
+                }
+            }
         }
     }
-
 }
 
 
 
 void Sudoku::afficher_grid(){
     cout << "le grid de sudoku est:\n";
-    for(int i = 0; i < nb_node; i++){
-        for(int j = 0; j < nb_node; j++){
-            cout << grid[i][j] << " ";
+    for(int i = 0; i < grid.size(); i++){
+        for(int j = 0; j < grid.size(); j++){
+            cout << color[i*grid.size()+j] + 1 << " ";
         }
         cout << endl;
     }

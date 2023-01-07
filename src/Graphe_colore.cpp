@@ -15,6 +15,7 @@ Graphe_colore::Graphe_colore(int _nb_node, int _max_color) : nb_node(_nb_node), 
     for(int i = 0; i < nb_node; i++){
         color[i] = -1;
     }
+    sol = false;
 }
 
 Graphe_colore::Graphe_colore(vector<vector<int> > G){
@@ -25,6 +26,7 @@ Graphe_colore::Graphe_colore(vector<vector<int> > G){
     v_Arete = new vector<Arete>[n];
     s_Voisins = new set<int>[n];
     color = vector<int> (n);
+    sol = false;
     //color_dispo = vector<int> (n);
     // créer les conteneurs
     // cout << "test" << endl;
@@ -45,34 +47,39 @@ Graphe_colore::Graphe_colore(vector<vector<int> > G){
     }
 }
 
-Graphe_colore::Graphe_colore(string nom_fichier){
-    //string fichier_dir = "tests/";
-
-    ifstream f(nom_fichier);
-    //if(f.fail()) throw ("0");
-    string input;
-    f >> input;
-    while(input != "edge"){
+Graphe_colore::Graphe_colore(string nom_fichier, int max_color_){
+    try{
+        ifstream f(nom_fichier);
+        if (!f.is_open()){
+            throw runtime_error("Erreur: le fichier n'est pas trouvé\n");
+        }
+        string input;
         f >> input;
-        //cout << input << endl;
+        while(input != "edge"){
+            f >> input;
+            //cout << input << endl;
+        }
+        int nb_edge;
+        f >> nb_node >> nb_edge;
+        max_color = max_color_;
+        int i, j;
+        char e;
+        v_Arete = new vector<Arete>[nb_node];
+        s_Voisins = new set<int>[nb_node];
+        color = vector<int> (nb_node, -1);
+        sol = false;
+        while(!f.eof()){
+            f >> e >> i >> j;
+            //cout << i << " " << j << endl;
+            ajout_arete(i-1, j-1);
+            //ajout_Arete(j-1, i-1);
+            s_Voisins[i-1].insert(j-1);
+            //s_Voisins[j-1].insert(i-1);
+        }
+        f.close();
+    } catch (const exception & e){
+        cerr << e.what() << endl;
     }
-    int nb_edge;
-    f >> nb_node >> nb_edge;
-    max_color = nb_node;
-    int i, j;
-    char e;
-    v_Arete = new vector<Arete>[nb_node];
-    s_Voisins = new set<int>[nb_node];
-    color = vector<int> (nb_node);
-    while(!f.eof()){
-        f >> e >> i >> j;
-        //cout << i << " " << j << endl;
-        ajout_arete(i-1, j-1);
-        //ajout_Arete(j-1, i-1);
-        s_Voisins[i-1].insert(j-1);
-        //s_Voisins[j-1].insert(i-1);
-    }
-    f.close();
 }
 
 void Graphe_colore::Init(){
@@ -134,8 +141,9 @@ void Graphe_colore::afficher_arete(){
             it->afficher();
             cnt++;
         }
+        cout << endl;
     }
-    cout << "le nombre total d'arête est " << cnt << endl;
+    cout << "le nombre total d'arête directionnel est " << cnt << endl;
 }
 
 void Graphe_colore::colorer(int i, int j){
@@ -224,4 +232,8 @@ const int Graphe_colore::sommet_meilleur(){
     }
 
     return sommet_mini;
+}
+
+void Graphe_colore::sol_trouve(){
+    sol = true;
 }

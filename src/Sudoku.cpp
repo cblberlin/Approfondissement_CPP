@@ -3,8 +3,9 @@
 Sudoku::Sudoku(vector<vector<int> > Grid) : Graphe_colore(Grid.size()*Grid.size(), Grid.size()){
     assert(Grid.size() == Grid[0].size());
     grid = Grid;
+    result = Grid;
     int n = Grid.size();
-    cout << n<< endl;
+    //cout << n<< endl;
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             int u = i*n + j;
@@ -50,9 +51,28 @@ void Sudoku::afficher_grid(){
     cout << "le grid de sudoku est:\n";
     for(size_t i = 0; i < grid.size(); i++){
         for(size_t j = 0; j < grid.size(); j++){
+            if(sol){
+                result[i][j] = color[i*grid.size()+j] + 1;
+            }
             cout << color[i*grid.size()+j] + 1 << " ";
         }
         cout << endl;
     }
 }
 
+void Sudoku::afficher_result(){
+    if (!sol){
+        cout << "ce sudoku n'a pas de solution" << endl;
+        return;
+    }
+    cout << "la solution de sudoku est:\n";
+    for(size_t i = 0; i < grid.size(); i++){
+        for(size_t j = 0; j < grid.size(); j++){
+            if(sol){
+                result[i][j] = color[i*grid.size()+j] + 1;
+            }
+            cout << color[i*grid.size()+j] + 1 << " ";
+        }
+        cout << endl;
+    }
+}

@@ -120,7 +120,6 @@ int main(){
     
     Graphe_solveur G_solve2(S);
     G_solve2.solve_backtracking();
-    S.afficher_grid();
-    
+    S.afficher_result();
     return 0;
 }

@@ -14,6 +14,10 @@ class Sudoku : public Graphe_colore{
     private:
         // le grid de sudoku
         vector<vector<int> > grid;
+
+        // sauvegarder le résultat
+        vector<vector<int>> result;
+
     public:
         // constructeur par une matrice
         Sudoku(vector<vector<int> >);
@@ -23,4 +27,7 @@ class Sudoku : public Graphe_colore{
         
         // afficher le grid
         void afficher_grid();
+
+        // afficher la solution
+        void afficher_result();
 };

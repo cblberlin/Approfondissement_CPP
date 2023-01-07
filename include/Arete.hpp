@@ -13,7 +13,7 @@ class Arete{
         // constructeur
         Arete(int, int);    
         // afficher
-        void afficher() {cout << "(" << arete.first << ", " << arete.second << ")" << endl;}
+        void afficher() {cout << "(" << arete.first << ", " << arete.second << ")" << " ";}
         
         
 };

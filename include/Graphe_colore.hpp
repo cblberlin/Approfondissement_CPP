@@ -32,6 +32,8 @@ class Graphe_colore{
 
         // un vector qui sauvegarde le nombre de couleur disponible pour chaque sommet
         // vector <int> color_dispo;
+        // indicateur pour que le pb a une sol ou pas
+        bool sol;
     public:
         /*
         constructeur par 2 entiers
@@ -55,9 +57,9 @@ class Graphe_colore{
 
         /*
         constructeur par un fichier *.col qui est issue de 
-        https://mat.tepper.cmu.edu/COLOR/instances.html
+        https://mat.tepper.cmu.edu/COLOR/instances.html et un max_color à saisir
         */
-        Graphe_colore(string);
+        Graphe_colore(string, int);
 
         // destructeur pour libérer le mémoire
         ~Graphe_colore();
@@ -122,4 +124,10 @@ class Graphe_colore{
         
         // retourne le sommet qui ayant le moins de couleur et plus de voisins possible
         const int sommet_meilleur();
+
+        // retourne l'indicateur si ce pb a une sol ou pas
+        const bool get_sol(){return sol;}
+
+        // change la valeur du sol s'il trouve la solution
+        void sol_trouve();
 };

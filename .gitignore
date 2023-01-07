@@ -37,3 +37,6 @@
 # Tests
 # *.col
 # *.col.b
+
+# vscode
+.vscode

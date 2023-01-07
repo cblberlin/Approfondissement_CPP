@@ -48,8 +48,8 @@ Sudoku::Sudoku(vector<vector<int> > Grid) : Graphe_colore(Grid.size()*Grid.size(
 
 void Sudoku::afficher_grid(){
     cout << "le grid de sudoku est:\n";
-    for(int i = 0; i < grid.size(); i++){
-        for(int j = 0; j < grid.size(); j++){
+    for(size_t i = 0; i < grid.size(); i++){
+        for(size_t j = 0; j < grid.size(); j++){
             cout << color[i*grid.size()+j] + 1 << " ";
         }
         cout << endl;

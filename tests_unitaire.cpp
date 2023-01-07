@@ -56,7 +56,7 @@ int main(){
     for(int i = 0; i < G.get_nb_node(); i++){
         cout << "les couleurs possibles pour sommet " << i << ":";
         vector<int> tab_tmp = G.tab_couleurs_dispo(i);
-        for(int j = 0; j < tab_tmp.size(); j++){
+        for(size_t j = 0; j < tab_tmp.size(); j++){
             cout << tab_tmp[j] << " ";
         }
         cout << endl;
@@ -66,7 +66,7 @@ int main(){
     for(int i = 0; i < G.get_nb_node(); i++){
         cout << "les couleurs possibles pour sommet " << i << ":";
         vector<int> tab_tmp = G.tab_couleurs_dispo(i);
-        for(int j = 0; j < tab_tmp.size(); j++){
+        for(size_t j = 0; j < tab_tmp.size(); j++){
             cout << tab_tmp[j] << " ";
         }
         cout << endl;
@@ -94,7 +94,7 @@ int main(){
 
     cout << "test pour le tableau de nombre voisins()" << endl;
     vector<int> tab_nb_voisins = G.tab_nb_voisins();
-    for(int i = 0; i < tab_nb_voisins.size(); i++){
+    for(size_t i = 0; i < tab_nb_voisins.size(); i++){
         cout << tab_nb_voisins[i] << " ";
     }
     cout << endl;
@@ -121,12 +121,6 @@ int main(){
     Graphe_solveur G_solve2(S);
     G_solve2.solve_backtracking();
     S.afficher_grid();
-    //S.afficher_grid();
     
-/*
-    Graphe_colore G2(2,2);
-    G.ajout_arete(0, 1);
-    G.afficher();
-*/
     return 0;
 }

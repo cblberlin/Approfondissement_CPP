@@ -1,64 +1,31 @@
-INCLDIR	:= include
-OBJDIR	:= obj
-SRCDIR	:= src
-BINDIR	:= bin
-DEBDIR	:= debug
+CC = g++
+CFLAGS = -Wall -g -O2 -I./include -std=c++11
 
-CC      := g++
-VPATH		:=
-LDFLAGS :=
-LIBRARY :=
-CXXFLAGS:= -Wall -I$(INCLDIR) -std=c++11
+all: main tests_unitaire
 
-#Source and object files (automatic)
-SRCS = $(wildcard $(SRCDIR)/*.cpp)
-OBJS = $(subst $(SRCDIR)/,$(OBJDIR)/, $(subst .cpp,.o, $(SRCS)))
+main: main.o Arete.o Graphe_colore.o Graphe_solveur.o Sudoku.o
+	$(CC) $(CFLAGS) -o bin/main obj/main.o obj/Arete.o obj/Graphe_colore.o obj/Graphe_solveur.o obj/Sudoku.o
 
-# Define here your main source files separated by spaces (without suffix!)
-EXEC = main tests_unitaire
+tests_unitaire: tests_unitaire.o Arete.o Graphe_colore.o Graphe_solveur.o Sudoku.o
+	$(CC) $(CFLAGS) -o bin/tests_unitaire obj/tests_unitaire.o obj/Arete.o obj/Graphe_colore.o obj/Graphe_solveur.o obj/Sudoku.o
 
-#Phony = do not represent a file
-#.PHONY: all
-all : makedir $(EXEC)
+main.o: main.cpp include/Arete.hpp include/Graphe_colore.hpp include/Graphe_solveur.hpp include/Sudoku.hpp
+	$(CC) $(CFLAGS) -c main.cpp -o obj/main.o
 
-debug: CXXFLAGS += -DDEBUG -g
-debug: BINDIR = $(DEBDIR)
-debug: makedir $(EXEC)
+tests_unitaire.o: tests_unitaire.cpp include/Arete.hpp include/Graphe_colore.hpp include/Graphe_solveur.hpp include/Sudoku.hpp
+	$(CC) $(CFLAGS) -c tests_unitaire.cpp -o obj/tests_unitaire.o
 
-# For multiple binaries
-$(EXEC) : %: %.cpp $(OBJS)
-	$(CC) $(CXXFLAGS) -o $(BINDIR)/$@ $^ -lm -lxml2
+Arete.o: src/Arete.cpp include/Arete.hpp
+	$(CC) $(CFLAGS) -c src/Arete.cpp -o obj/Arete.o
 
-# ... With debug mode on
-$(DEBUG) : %: %.cpp $(OBJS)
-	$(CC) $(CXXFLAGS) -g -o $(BINDIR)/$@ $^
+Graphe_colore.o: src/Graphe_colore.cpp include/Graphe_colore.hpp
+	$(CC) $(CFLAGS) -c src/Graphe_colore.cpp -o obj/Graphe_colore.o
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CC) $(CXXFLAGS) -c -o $@ $<
+Graphe_solveur.o: src/Graphe_solveur.cpp include/Graphe_solveur.hpp
+	$(CC) $(CFLAGS) -c src/Graphe_solveur.cpp -o obj/Graphe_solveur.o
 
-#Clean: delete every binaries and object files
-.PHONY: clean
-clean :
-	rm -rf $(OBJDIR)/*
-	rm -rf $(BINDIR)/*
-	rm -rf $(DEBDIR)/*
+Sudoku.o: src/Sudoku.cpp include/Sudoku.hpp
+	$(CC) $(CFLAGS) -c src/Sudoku.cpp -o obj/Sudoku.o
 
-#Building folders (-p : no error if folder do not exist)
-.PHONY: makedir
-makedir :
-	mkdir -p $(BINDIR)
-	mkdir -p $(OBJDIR)
-
-#For some debug
-.PHONY: print
-print :
-	echo $(SRCS)
-	echo $(OBJS)
-
-#Remarks:
-# $@ : filename representing the target
-# $< : filename of the first prerequisite
-# $^ : filenames of all prerequisites, separated by spaces. Dupplicated are removed.
-# $? : names of all prerequisites that are newer than the target, separated by spaces
-# $+ : similar to $^ but include dupplicates
-# $* : stem of target file (filename without suffix)
+clean:
+	rm -f bin/main bin/tests_unitaire obj/tests_unitaire.o obj/Arete.o obj/Graphe_colore.o obj/Graphe_solveur.o obj/Sudoku.o obj/main.o obj/tests_unitaire.o

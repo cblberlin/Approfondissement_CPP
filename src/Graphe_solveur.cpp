@@ -5,7 +5,7 @@ Graphe_solveur::Graphe_solveur(Graphe_colore & G_) : G(G_){
 }
 
 bool Graphe_solveur::est_valide(int noeud, int couleur) {
-    for(int i = 0; i < G.voisins(noeud).size(); i++) {
+    for(size_t i = 0; i < G.voisins(noeud).size(); i++) {
         if(G.get_color(i) == couleur) {
             return false;
         }
@@ -16,7 +16,8 @@ bool Graphe_solveur::est_valide(int noeud, int couleur) {
 
 bool Graphe_solveur::solve_backtracking(){
     // initialisation un tab pour le nombre de voisin pour chaque sommet
-    int tmp = G.sommet_meilleur();
+    int tmp = 0;
+    tmp = G.sommet_meilleur();
 
     if(tmp == G.get_nb_node()){
         return true;
@@ -24,7 +25,7 @@ bool Graphe_solveur::solve_backtracking(){
     
     vector<int> tab_couleurs_dispo = G.tab_couleurs_dispo(tmp);
     
-    int i = 0;
+    size_t i = 0;
     bool cond = false;
 
     while( !cond && i < tab_couleurs_dispo.size()){

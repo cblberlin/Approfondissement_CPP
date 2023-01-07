@@ -29,11 +29,11 @@ Graphe_colore::Graphe_colore(vector<vector<int> > G){
     // créer les conteneurs
     // cout << "test" << endl;
     //cout << G.size() << endl;
-    for(int i = 0; i < G.size(); i++){
+    for(size_t i = 0; i < G.size(); i++){
         // Initialiser les couleurs comme non-coloré
         color[i] = -1;
         //cout << color[i] << endl;
-        for(int j = 0; j < G.size(); j++){
+        for(size_t j = 0; j < G.size(); j++){
             //cout << "test" << endl;
             if(G[i][j] != 0){
                 ajout_arete(i, j);
@@ -119,7 +119,7 @@ void Graphe_colore::afficher(){
         set<int>::iterator it = s_Voisins[i].begin();
         cout << "liste d'adjacente du noeud " << i << ": ";
         cout << i << " -> ";
-        for(it; it!= prev(s_Voisins[i].end()); it++){
+        for(; it!= prev(s_Voisins[i].end()); it++){
             cout << *it << " -> ";
         }
         cout << *(it++) << endl;
@@ -168,9 +168,9 @@ const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
 
     sort(couleur_dispo.begin(), couleur_dispo.end());
 
-    couleur_dispo.erase(unique(couleur_dispo.begin(), couleur_dispo.end()), couleur_dispo.end());\
+    couleur_dispo.erase(unique(couleur_dispo.begin(), couleur_dispo.end()), couleur_dispo.end());
 
-    int j = 0;
+    size_t j = 0;
 
     if(couleur_dispo[j] == -1){j++;}
 

@@ -36,13 +36,16 @@ bool Graphe_solveur::solve_backtracking(vector<int> & vois, vector<int> & Zahl_F
     // C'est simplement pour une question de visibilité.
     // vois correspondra au tableau retourné par tableau_nombre_voisins().
     // Farbe correspondra au tableau retourné par tableau_nombre_couleurs_dispos().
+    valeur = find_if()
+    if()
     int min_couleur = min_element(Zahl_Farben.begin(), Zahl_Farben.end(), [] (int i) {return color[i] == -1});
     // On prendra en compte le critère supplémenrtaire "a le plus de voisins dans le cas ou plusieurs sommet ont cette valeur minimum" dès que possible.
     // En attendant, le sommet sera le plus petit en terme de notation à minimiser le nombre de couleurs disponibles.
     int sommet_cible = distance(Zahl_Farben.begin(), min_couleur);
     for(int i = 0; i < max_color; i++) {
         if(est_valide(sommet_cible, i)) {
-            color[sommet_cible] == i;
+            colorer(sommet_cible,i);
+            //color[sommet_cible] == i;
         }
     }
 }

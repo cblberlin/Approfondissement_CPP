@@ -109,6 +109,3 @@ class Graphe_colore{
         vector<int> tableau_nombre_voisins();
         
 };
-
-
-

@@ -1,5 +1,9 @@
 #include "Graphe_solveur.hpp"
 
+Graphe_solveur::Graphe_solveur(Graphe_colore & G_) : G(G_){
+    G = G_;
+}
+
 bool Graphe_solveur::est_valide(int noeud, int couleur) {
     for(int i = 0; i < G.voisins(noeud).size(); i++) {
         if(G.get_color(i) == couleur) {
@@ -53,30 +57,60 @@ bool Graphe_solveur::solve_backtracking(int sommet) { // (int sommet, int couleu
         }
 
     }
+
+    /*int n = tab_couleur_possible.size();
+    for(int i = 0; i < n; i++) {
+        if(est_valide(sommet, i)) {
+            G.colorer(sommet, i);
+            if(solve_backtracking(sommet + 1)) {
+                return true;
+            }
+            G.colorer(sommet,-1);
+        }
+    }*/
     return false;
 }
 
-/*    vector<int> vois_bis = vois;
-    auto non_colore = [] (int i) {return color[i] == -1;};
-    auto valeur = find_if(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), non_colore);
-    if(valeur == nbre_couleurs_dispos.end()) {return true;}
-        //bool assertion = false;
-        auto compteur = count_if(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), non_colore);
-        int min_couleur = min_element(nbre_couleurs_dispos.begin(), nbre_couleurs_dispos.end(), [] (int i) {return color[i] == -1});
-        // On prendra en compte le critère supplémentaire "a le plus de voisins dans le cas ou plusieurs sommet ont cette valeur minimum" dès que possible.
-        // En attendant, le sommet sera le plus petit en terme de notation à minimiser le nombre de couleurs disponibles.
-        int sommet_cible = distance(nbre_couleurs_dispos.begin(), min_couleur);
-        for(int i = 0; i < max_color; i++) {
-            if(est_valide(sommet_cible, i)) {
-                colorer(sommet_cible,i);
-                //assertion = true;
-                break;
-                //color[sommet_cible] == i;
+/*bool Graphe::estValide(){           // Fonction qui r�alise la partie r�cursive de l'algorithme de backtracking
+
+    int meilleur_sommet = mini();   // Sommet ayant le moins de couleurs possibles
+
+    if (meilleur_sommet == -1){     // Si chaque sommet a une couleur, renvoie true
+        return true;
+    }
+
+    else {
+        std::vector<int> tab_coul_dispo = cols(meilleur_sommet);  // Copie du tableau contenant les couleurs disponibles pour meilleur_sommet sachant que la liste est tri�e par ordre croissant
+
+        int i = 0;                         // On donne � ce sommet la plus petite couleur possible, sera incr�ment� si cette couleur n'est pas valide
+
+        bool cond = false;          // Variable qui stocke le bool�en que va renvoyer estValide
+
+        int t = tab_coul_dispo.size();      // Pour �viter un warning du compilateur, comparaison entre un long long int et un int
+
+        while( !cond && i < t ){    // Tant que cond est false et que i < t
+            MAJ( meilleur_sommet, tab_coul_dispo[i], true );    // on met � jour le graphe au sommet "meilleur_sommet", avec la couleur "tab_coul_dispo[i]"
+            i++;
+            cond = estValide();             // appel r�cursif de estValide
+            if (cond == false){
+                MAJ( meilleur_sommet, tab_coul_dispo[i], false );       // On annule la mise � jour pr�c�dente si cond vaut false
             }
         }
-        if(solve_backtracking() == false) {
-            color[sommet_cible] = -1;
+        if (cond){
+            return true;    // Renvoie true si cond vaut true
         }
-       
-    return false;
+
+        else {
+            return false;   // Renvoie false si cond vaut false
+        }
+    }
+
 }*/
+
+void Graphe_solveur::print_result() {
+    int n = G.get_nb_node();
+    for(int i=0; i<n; i++){
+    cout << "Le sommet " << i << " a pour couleur " << G.get_color(i) << endl;
+    }
+    cout << endl << endl;
+}

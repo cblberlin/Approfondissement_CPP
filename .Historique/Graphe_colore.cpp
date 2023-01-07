@@ -130,7 +130,7 @@ void Graphe_colore::afficher_arete(){
 }
 
 void Graphe_colore::colorer(int i, int j){
-    assert(-1 <= j && j < max_color && 0 <= i && i < nb_node);
+    //assert(-1 <= j && j < max_color && 0 <= i && i < nb_node);
     color[i] = j;
 }
 

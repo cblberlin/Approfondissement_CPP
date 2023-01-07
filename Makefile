@@ -1,5 +1,9 @@
 CC = g++
+<<<<<<< HEAD
 CFLAGS = -Wall -g -O2 -I./include -std=c++11
+=======
+CFLAGS = -Wall -O2 -I./include -std=c++11
+>>>>>>> c995f0af72b500c1e60b1a26c95ec9e2ab01f2dd
 
 all: main tests_unitaire
 

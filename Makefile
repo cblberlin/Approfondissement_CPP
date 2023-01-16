@@ -30,3 +30,4 @@ Sudoku.o: src/Sudoku.cpp include/Sudoku.hpp
 
 clean:
 	rm -f bin/main bin/tests_unitaire obj/tests_unitaire.o obj/Arete.o obj/Graphe_colore.o obj/Graphe_solveur.o obj/Sudoku.o obj/main.o obj/tests_unitaire.o
+

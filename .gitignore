@@ -38,5 +38,7 @@
 # *.col
 # *.col.b
 
+*.txt
+
 # vscode
 .vscode

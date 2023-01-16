@@ -30,8 +30,6 @@ class Graphe_colore{
         // un vector qui sauvegarde le couleur coloré pour les noeuds
         vector <int> color;
 
-        // un vector qui sauvegarde le nombre de couleur disponible pour chaque sommet
-        // vector <int> color_dispo;
         // indicateur pour que le pb a une sol ou pas
         bool sol;
     public:
@@ -40,7 +38,7 @@ class Graphe_colore{
         
         Entrées:
             int nb_noeud: le nombre de noeud dans le graphe
-            int max_color: le nb maximale pour le graphe, initialement est nb_node
+            int max_color: le nb maximale pour le graphe
         */
         
         Graphe_colore(int, int);
@@ -52,8 +50,9 @@ class Graphe_colore{
                 de taille N * N avec que de 0 ou 1, si M(i,j) = 1,
                 c'est-à-dire qu'il y a un arete dans noeud i et noeud j
                 sinon il n'y a pas
+            int max_color_: le nb maximale pour le graphe
         */
-        Graphe_colore( vector< vector<int> >);
+        Graphe_colore( vector< vector<int> >, int);
 
         /*
         constructeur par un fichier *.col qui est issue de 
@@ -64,22 +63,23 @@ class Graphe_colore{
         // destructeur pour libérer le mémoire
         ~Graphe_colore();
         
+        // Initilialiser tous les sommets au couleur -1, c'est-à-dire non coloré
         void Init();
 
         /*
         retourner le nombre de node
         */
-        const int get_nb_node() {return nb_node;}
+        int get_nb_node() const {return nb_node;}
 
         /*
         retourne le nombre d'arête
         */ 
-        const int get_nb_edge();
+        int get_nb_edge () const;
 
         /*
         retourne le nombre maximal de couleur pour ce graphe
         */
-        const int get_max_color() {return max_color;}
+        int get_max_color() const {return max_color;}
 
         /*
         ajouter l'arret dans le graphe entre i et j
@@ -90,7 +90,7 @@ class Graphe_colore{
         void ajout_arete(int, int);
 
         // retourne le nombre de voisins du noeud i
-        const int nb_voisins(int);
+        int nb_voisins(int) const;
 
         // retourne la liste de voisin du noeud i
         set<int> voisins(int) const;
@@ -108,7 +108,7 @@ class Graphe_colore{
         void colorer(int, int);
 
         // retourne le couleur de noeud i
-        const int get_color(int);
+        int get_color(int) const;
 
         // afficher la coloration du sommet
         void afficher_color();
@@ -117,16 +117,16 @@ class Graphe_colore{
         void afficher_nb_voisins();
 
         // stocker les couleurs possibles pour le sommet i
-        const vector<int> tab_couleurs_dispo(int);
+        vector<int> tab_couleurs_dispo(int) const;
 
         // calculer le vector de nombre de voisins pour chaque sommet
-        const vector<int> tab_nb_voisins();
+        vector<int> tab_nb_voisins() const;
         
         // retourne le sommet qui ayant le moins de couleur et plus de voisins possible
-        const int sommet_meilleur();
+        int sommet_meilleur() const;
 
         // retourne l'indicateur si ce pb a une sol ou pas
-        const bool get_sol(){return sol;}
+        bool get_sol() const {return sol;}
 
         // change la valeur du sol s'il trouve la solution
         void sol_trouve();

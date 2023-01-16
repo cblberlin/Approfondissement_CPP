@@ -18,25 +18,19 @@ Graphe_colore::Graphe_colore(int _nb_node, int _max_color) : nb_node(_nb_node), 
     sol = false;
 }
 
-Graphe_colore::Graphe_colore(vector<vector<int> > G){
+Graphe_colore::Graphe_colore(vector<vector<int> > G, int max_color_){
     assert(G.size() == G[0].size());
     int n = G.size();
     nb_node = n;
-    max_color = n;
+    max_color = max_color_;
     v_Arete = new vector<Arete>[n];
     s_Voisins = new set<int>[n];
     color = vector<int> (n);
     sol = false;
-    //color_dispo = vector<int> (n);
-    // créer les conteneurs
-    // cout << "test" << endl;
-    //cout << G.size() << endl;
     for(size_t i = 0; i < G.size(); i++){
         // Initialiser les couleurs comme non-coloré
         color[i] = -1;
-        //cout << color[i] << endl;
         for(size_t j = 0; j < G.size(); j++){
-            //cout << "test" << endl;
             if(G[i][j] != 0){
                 ajout_arete(i, j);
                 ajout_arete(j, i);
@@ -57,7 +51,6 @@ Graphe_colore::Graphe_colore(string nom_fichier, int max_color_){
         f >> input;
         while(input != "edge"){
             f >> input;
-            //cout << input << endl;
         }
         int nb_edge;
         f >> nb_node >> nb_edge;
@@ -70,11 +63,8 @@ Graphe_colore::Graphe_colore(string nom_fichier, int max_color_){
         sol = false;
         while(!f.eof()){
             f >> e >> i >> j;
-            //cout << i << " " << j << endl;
             ajout_arete(i-1, j-1);
-            //ajout_Arete(j-1, i-1);
             s_Voisins[i-1].insert(j-1);
-            //s_Voisins[j-1].insert(i-1);
         }
         f.close();
     } catch (const exception & e){
@@ -88,7 +78,7 @@ void Graphe_colore::Init(){
     }
 }
 
-const int Graphe_colore::get_nb_edge(){
+int Graphe_colore::get_nb_edge() const{
     int cnt = 0;
     for(int i = 0; i < nb_node; i++){
         cnt += v_Arete[i].size();
@@ -103,14 +93,12 @@ void Graphe_colore::ajout_arete(int n1, int n2){
     s_Voisins[n2].insert(n1);
 }
 
-const int Graphe_colore::nb_voisins(int n){
-    //cout << n << ":" << s_Voisins[n].size() << endl;
+int Graphe_colore::nb_voisins(int n) const{
     assert(n < nb_node);
     return s_Voisins[n].size();
 }
 
 set<int> Graphe_colore::voisins(int n) const{
-    //cout << n << endl;
     assert(n < nb_node);
     return s_Voisins[n];
 }
@@ -120,8 +108,6 @@ set<int>* Graphe_colore::vec_voisins() const{
 }
 
 void Graphe_colore::afficher(){
-    //cout << "Le graphe a " << nb_node << " noeuds " << "et " << get_nb_edge() << " arrets" << endl;
-    //cout << "Le graphe représenté en liste d'adjacente est:" << endl << endl;
     for(int i = 0; i < nb_node; i++){
         set<int>::iterator it = s_Voisins[i].begin();
         cout << "liste d'adjacente du noeud " << i << ": ";
@@ -147,7 +133,6 @@ void Graphe_colore::afficher_arete(){
 }
 
 void Graphe_colore::colorer(int i, int j){
-    //assert(-1 <= j && j < max_color && 0 <= i && i <= nb_node);
     color[i] = j;
 }
 
@@ -166,7 +151,7 @@ void Graphe_colore::afficher_nb_voisins(){
     }
 }
 
-const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
+vector<int> Graphe_colore::tab_couleurs_dispo(int i) const{
     vector<int> couleur_dispo;
     vector<int> res;
 
@@ -194,11 +179,11 @@ const vector<int> Graphe_colore::tab_couleurs_dispo(int i){
     return res;
 }
 
-const int Graphe_colore::get_color(int i){
+int Graphe_colore::get_color(int i) const{
     return color[i];
 }
 
-const vector<int> Graphe_colore::tab_nb_voisins(){
+vector<int> Graphe_colore::tab_nb_voisins() const{
     vector<int> res;
     for(int i = 0; i < nb_node; i++){
         res.push_back(nb_voisins(i));
@@ -206,7 +191,7 @@ const vector<int> Graphe_colore::tab_nb_voisins(){
     return res;
 }
 
-const int Graphe_colore::sommet_meilleur(){
+int Graphe_colore::sommet_meilleur() const{
     int sommet_mini = 0;
 
     while(color[sommet_mini] != -1 && sommet_mini < nb_node){

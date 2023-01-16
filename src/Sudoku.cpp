@@ -5,7 +5,6 @@ Sudoku::Sudoku(vector<vector<int> > Grid) : Graphe_colore(Grid.size()*Grid.size(
     grid = Grid;
     result = Grid;
     int n = Grid.size();
-    //cout << n<< endl;
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             int u = i*n + j;
@@ -21,7 +20,7 @@ Sudoku::Sudoku(vector<vector<int> > Grid) : Graphe_colore(Grid.size()*Grid.size(
                 ajout_arete(u, v);
             }
 
-            // ajoute arete pour colone
+            // ajoute arete pour colonne
             for(int k = 0; k < n; k++){
                 if(k == i) continue;
                 int v = k*n + j;

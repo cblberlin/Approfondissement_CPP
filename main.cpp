@@ -112,7 +112,7 @@ int main(){
                                  {0, 0, 0, 0, 8, 0, 0, 7, 9} };
     Sudoku S2(grid2);
     cout << "Le Sudoku 9 x 9 est comme suivant:" << endl;
-    S.afficher_grid();
+    S2.afficher_grid();
     Graphe_solveur G_solve4(S2);
     G_solve4.solve_backtracking();
     S2.afficher_result();
